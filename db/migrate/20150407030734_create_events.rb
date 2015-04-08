@@ -1,6 +1,7 @@
 class CreateEvents < ActiveRecord::Migration
   def up
     create_table :events do |t|
+		t.references :organization
 		t.string "name"
 		t.string "address"
 		t.date "date"
@@ -9,6 +10,8 @@ class CreateEvents < ActiveRecord::Migration
 		t.boolean "deleted", :default => false
       t.timestamps
     end
+	  
+	add_index("events", "organization_id")
   end
 	
 	def down
