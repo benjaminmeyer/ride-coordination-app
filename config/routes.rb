@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+	
+  get 'rides/index'
+
+	root "dashboard#index"
+	
+  get 'events/index'
+
   get 'dashboard/index'
 
   get 'organization/index'
