@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
+
+  get 'organization/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+	
+	#default route at end of file
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
@@ -53,4 +59,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+	
+	match ':controller(/:action(/:id))', :via => :get
 end

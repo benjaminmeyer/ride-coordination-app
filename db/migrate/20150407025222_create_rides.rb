@@ -5,6 +5,7 @@ class CreateRides < ActiveRecord::Migration
 		# user is the driver of the car
 		# t.references :user
 		t.integer "num_passengers"
+		t.text "notes"
 		t.boolean "deleted", :default => false
     	t.timestamps
     end

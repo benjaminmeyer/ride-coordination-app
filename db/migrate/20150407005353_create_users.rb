@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
 		t.column "first_name", :string, :limit => 25
 		t.string "last_name", :limit => 25
 		t.string "email"
-		t.string "password"
+		t.string "password_digest"
 		t.boolean "deleted", :default => false
     	t.timestamps
     end

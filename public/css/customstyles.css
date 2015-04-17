@@ -1,0 +1,243 @@
+body {
+     background-color: #ffffff;
+}
+
+@media (min-width: 768px) {
+     .navbar-default {
+          background-color: rgba(248,248,248, .8);
+     }
+     
+     #mobilesidebardiv {
+          display: none;
+     }
+
+     .img-desktop {
+          margin-top: 280px;
+     }
+
+     #chapter-photo {
+          margin-top: 80px;
+     }
+
+}
+
+.navbar-default {
+     /*styles for non-claendar pages are inline with HTML*/
+     border-bottom: 2px solid rgba(87,168,255, 0.8);
+}
+
+.dropdown-menu {
+     background-color: rgb(248,248,248);
+     /*border-top: 1px solid rgb(248,248,248);*/
+     border-top: none;
+}
+
+#mobilesidebarcontent .sub-header{
+     text-align: center;
+     font-size: 16px;
+}
+
+.btn-dark {
+    color: #FFF;
+    background-color: #555;
+    border-color: #333;
+}
+
+.btn-dark:hover {
+    color: #FFF;
+    background-color: #333;
+}
+
+/*@media (min-width: 768px) {
+     .navbar-nav {
+          background-color: #f8f8f8;
+          background-color: rgba(248,248,248, .8);
+     }
+}*/
+
+.clearmenu {
+     margin-top:50px;
+}
+
+#mycontent {
+     margin-top: 80px;
+}
+
+.affix-top: {
+     top: 0px;
+}
+
+.overlaytext {
+     color: #ffffff;
+     color: black;
+}
+
+h1 small {
+     color: #dddddd;
+     color: black;
+}
+
+#tags {
+     z-index:1000;
+}
+
+.ui-state-focus {
+     background-color: #5bc0de;
+}
+
+.page-header {
+     margin-top: 20px;
+     border-bottom: 1px solid #000000;
+}
+
+.normalcontent {
+     background-color: #ffffff;
+     /*color: #000000;*/
+     width: 100%;
+}
+
+#footer {
+     color: #aaaaaa;
+}
+
+#footer a {
+     color: #aaaaaa;
+}
+
+#headbox {
+     /*margin-top:50px;*/
+     background-color: #154a7c;
+     color: #ffffff;
+     height: 300px;
+     padding-top: 20px;
+     text-align: center;
+     /*background-image: url("../img/inductionfall14.jpg");
+     background-repeat: no-repeat;
+     background-position: center;
+     background-attachment: fixed;
+     background-size: cover;*/
+}
+
+#headbox h1 {
+     margin-bottom: 20px;
+}
+
+#headbox hr {
+     width: 50%;
+}
+
+#headboxtitle {
+     background-color: #154a7c;
+     color: #ffffff;
+     height: 150px;
+     padding-top: 20px;
+     padding-bottom: 20px;
+     font-size: 60px;
+     font-weight: 300;
+     line-height: 1;
+     letter-spacing: -1px;
+}
+
+.headingtext {
+     padding-top: 20px;
+}
+
+#pic-divider {
+     height: 400px;
+     margin-top: 100px;
+     text-align: right;
+     color: #fff;
+     background-image: url("../img/inductionfall14.jpg");
+     background-repeat: no-repeat;
+     background-position: center;
+     /*background-attachment: fixed;*/
+     background-size: cover;
+}
+
+#pic-divider h2 {
+     margin-top:5px;
+}
+
+#photo-title {
+
+}
+
+#photo-title h2 {
+     margin: 0px;
+     padding: 20px;
+     color: #5a5a5a;
+     font-size: 40px;
+     font-weight: 300;
+     line-height: 1;
+     letter-spacing: -1px;
+     text-align: center;
+}
+
+.headtext {
+     margin-top: 40px;
+}
+
+.glyphpanel {
+     float:left;
+     font-size: 40px;
+     border-right: 1px solid #bbb;
+     padding-right: 12px;
+     margin-right: 10px;
+}
+
+.paneltext {
+     /*keep alogned to right of icon on mobile */
+     margin-left: 62px;
+}
+
+.welleventlist {
+     max-height: 200px;
+     overflow: auto;
+}
+
+/* rest of wells not used */
+.welleventlist a{
+     text-decoration: none;
+     color: inherit;
+}
+
+.welleventlist a:hover{
+     color: #999;
+}
+
+.paneleventlist {
+     max-height: 200px;
+     overflow: auto;
+}
+
+.card {
+     height: 170px;
+     border: 1px solid rgb(231,231,231);
+     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+     border-radius: 8px;
+     padding: 10px;
+     padding-left: 20px;
+     padding-right: 20px;
+     margin-bottom: 20px;
+}
+
+.progress {
+    box-shadow: none;
+}
+
+.progress-bar {
+    box-shadow: none;
+}
+
+.well {
+    box-shadow: none;
+}
+
+.panel {
+    box-shadow: none;
+}
+
+.form-control {
+    box-shadow: none;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
