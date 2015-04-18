@@ -15,6 +15,8 @@ class AccessController < ApplicationController
 		end
 		
 		if authorized_user
+			session[:user_id] = authorized_user.id
+			session[:first_name] = authorized_user.first_name
 			redirect_to(:controller => 'dashboard')
 		else
 			flash[:notice] = "Invalid username or password"
@@ -24,6 +26,8 @@ class AccessController < ApplicationController
 	end
 	
 	def logout
+		session[:user_id] = nil
+		session[:first_name] = nil
 		flash[:notice] = "Logged out"
 		redirect_to(:action => 'login')
 	end

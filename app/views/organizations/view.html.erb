@@ -1,13 +1,21 @@
-<% @page_title = "Organizations" %>
+<% @page_title = @organization.name %>
 
 <div>
 	
-	<h1 class="page-header">Single Organization</h1>
+	<h1 class="page-header">Single Organization <%= @organization.name %> - <small><%= @organization.semester %> <%= @organization.year %></small></h1>
 	<p>Organization info</p>
+	<p>Name: <%= @organization.name %></p>
 	<p>show events</p>
 	
 	<div class="list-group">
-		<a href="#" class="list-group-item">
+		<% @events.each do |event| %>
+			<a href="/events/view/<%= event.id %>" class="list-group-item">
+				<h4><%= event.name %></h4>
+				<p><%= event.date %></p>
+			</a>
+		<% end %>
+		
+		<!--<a href="#" class="list-group-item">
 			<h4>Cras justo odio</h4>
 			<p>Text Text date</p>
 		</a>
@@ -26,7 +34,7 @@
 		<a href="#" class="list-group-item">
 			<h4>Cras justo odio</h4>
 			<p>Text Text date</p>
-		</a>
+		</a>-->
 	</div>
 	
 </div><!-- end hours -->
