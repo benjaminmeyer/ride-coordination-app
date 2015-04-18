@@ -12,12 +12,12 @@
           <!-- bootstrap -->
           <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
           <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-		  <!--<link href="css/paper.bootstrap.min.css" rel="stylesheet">-->
 
           <!-- Custom -->
           <link href="http://localhost:3000/css/customstyles.css" rel="stylesheet">
           <link href="http://localhost:3000/css/features.css" rel="stylesheet">
           <link href="http://localhost:3000/css/dashboard.css" rel="stylesheet">
+		 <!--<link href="http://localhost:3000/css/paper.bootstrap.min.css" rel="stylesheet">-->
 
      </head>
      <body>
@@ -52,10 +52,11 @@
 								</li>
 								<li class="dropdown">
 									 <a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Welcome, <?php echo $first_name . " " . $last_name; ?><strong class="caret"></strong></a>
-									 <div class="dropdown-menu">
-
-
-									 </div><!-- end dropdown -->
+									<ul class="dropdown-menu" role="menu">
+										  <li><a href="#">Profile</a></li>
+										  <li class="divider"></li>
+										<li><a href="#"><div class="text-danger">Logout</div></a></li>
+									 </ul>
 								</li>
 						   </ul>
 
