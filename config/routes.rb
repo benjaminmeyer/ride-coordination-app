@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
+
+	root "dashboard#index"
 	
-  get 'access/index'
+	get "login", :to => "access#login"
+	
+	get 'access/index', :to => "access#login"
+	
+	get 'access', :to => "access#login"
 
   get 'access/login'
 
   get 'rides/index'
-
-	root "dashboard#index"
 	
   get 'events/index'
 
@@ -71,5 +75,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 	
-	match ':controller(/:action(/:id))', :via => :get
+	match ':controller(/:action(/:id))', :via => [:get, :post]
 end
