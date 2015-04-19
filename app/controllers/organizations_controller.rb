@@ -56,4 +56,24 @@ class OrganizationsController < ApplicationController
 			render('new')
 		end
 	end
+	
+	def join
+		@organizations = Organization.all
+	end
+	
+	def dojoin
+		member = Member.new
+		
+		member.user_id = session[:user_id]
+		member.organization_id = params[:id]
+		member.role = "member"
+		
+		if member.save
+			flash[:notice] = "Added to organization."
+			redirect_to(:action => 'view', :id => params[:id])
+		else
+			flash[:notice] = "Error."
+			redirect_to(:action => 'join')
+		end
+	end
 end
