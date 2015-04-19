@@ -3,9 +3,7 @@
 <div>
 	
 	<h1 class="page-header"><%= @organization.name %> - <small><%= @organization.semester %> <%= @organization.year %></small></h1>
-	<p>Organization info</p>
-	<p>Name: <%= @organization.name %></p>
-	<p>show events</p>
+	<h4>Events</h4>
 	
 	<div class="list-group">
 		<% @events.each do |event| %>

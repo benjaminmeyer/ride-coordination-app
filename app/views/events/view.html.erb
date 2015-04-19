@@ -19,7 +19,7 @@
 	
 	<div class="row">
 		<div class="col-md-6">
-			<button type="button" class="btn btn-primary btn-block">Sign Up as Driver</button>
+			<a href="/events/drive/<%= @event.id %>"><button type="button" class="btn btn-primary btn-block">Sign Up as Driver</button></a>
 		</div>
 		<div class="col-md-6">
 			<button type="button" class="btn btn-primary btn-block">Auto Sign Up</button>
@@ -31,12 +31,19 @@
 	<div style="height: 20px;"></div>
 	
 	<div class="row">
-		
+		<% count = 1 %>
 		<% @rides.each do |ride| %>
+			
+			
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<!-- Default panel contents -->
-					<div class="panel-heading">Driver: Person</div>
+					<% ride.passengers.each do |passenger| %>
+						<% if passenger.role == 'driver' %>
+							<% @driver = passenger.user %>
+						<% end %>
+					<% end %>
+					<div class="panel-heading"><b>Driver: <%= @driver.first_name %> <%= @driver.last_name %></b></div>
 					<div class="panel-body">
 						<p><%= ride.num_passengers%> passengers max</p>
 						<p><%= ride.notes%></p>
@@ -44,117 +51,32 @@
 
 					<!-- List group -->
 					<ul class="list-group">
-						<% @users.each do |user| %>
-							<li class="list-group-item"><%= user.first_name %> <%= user.last_name %></li>
+						<% ride.passengers.each do |passenger| %>
+							<% if passenger.role != 'driver' %>
+								<li class="list-group-item"><%= passenger.user.first_name %> <%= passenger.user.last_name %></li>
+							<% end %>
 						<% end %>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Morbi leo risus</li>
-						<li class="list-group-item">Porta ac consectetur ac</li>
-						<li class="list-group-item"><button type="button" class="btn btn-primary btn-block">Sign Up</button></li>
+						<form method="POST" action="/events/signup/<%= params[:id] %>?car=<%= ride.id %>">
+							<%= token_tag %>
+							<li class="list-group-item"><button type="submit" class="btn btn-primary btn-block">Sign Up</button></li>
+						</form>
 					</ul>
 				</div>
 			</div>
+		
+			<!-- clean up rows to make the rides cleaner -->
+			<% if count % 3 == 0 %>
+				</div>
+				<div class="row">
+			<% end %>
+			<% count = count + 1 %>
+		
 		<% end %>
 		
-		<div class="col-md-4">
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">Driver: Person</div>
-				<div class="panel-body">
-					<p>...</p>
-				</div>
-
-				<!-- List group -->
-				<ul class="list-group">
-					<li class="list-group-item">Cras justo odio</li>
-					<li class="list-group-item">Dapibus ac facilisis in</li>
-					<li class="list-group-item">Morbi leo risus</li>
-					<li class="list-group-item">Porta ac consectetur ac</li>
-					<li class="list-group-item"><button type="button" class="btn btn-primary btn-block">Sign Up</button></li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">Panel heading</div>
-				<div class="panel-body">
-					<p>...</p>
-				</div>
-
-				<!-- List group -->
-				<ul class="list-group">
-					<li class="list-group-item">Cras justo odio</li>
-					<li class="list-group-item">Dapibus ac facilisis in</li>
-					<li class="list-group-item"><button type="button" class="btn btn-primary btn-block">Sign Up</button></li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">Panel heading</div>
-				<div class="panel-body">
-					<p>...</p>
-				</div>
-
-				<!-- List group -->
-				<ul class="list-group">
-					<li class="list-group-item">Cras justo odio</li>
-					<li class="list-group-item">Dapibus ac facilisis in</li>
-					<li class="list-group-item">Morbi leo risus</li>
-					<li class="list-group-item">Porta ac consectetur ac</li>
-					<li class="list-group-item">Porta ac consectetur ac</li>
-					<li class="list-group-item"><button type="button" class="btn btn-primary btn-block">Sign Up</button></li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">Panel heading</div>
-				<div class="panel-body">
-					<p>...</p>
-				</div>
-
-				<!-- List group -->
-				<ul class="list-group">
-					<li class="list-group-item">Cras justo odio</li>
-					<li class="list-group-item">Dapibus ac facilisis in</li>
-					<li class="list-group-item">Morbi leo risus</li>
-					<li class="list-group-item">Porta ac consectetur ac</li>
-					<li class="list-group-item">Vestibulum at eros</li>
-					<li class="list-group-item"><button type="button" class="btn btn-primary btn-block">Sign Up</button></li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">Panel heading</div>
-				<div class="panel-body">
-					<p><b>4 passengers max</b></p>
-				</div>
-
-				<!-- List group -->
-				<ul class="list-group">
-					<li class="list-group-item">Cras justo odio</li>
-					<li class="list-group-item">Dapibus ac facilisis in</li>
-					<li class="list-group-item">Morbi leo risus</li>
-					<li class="list-group-item">Porta ac consectetur ac</li>
-					<li class="list-group-item">Vestibulum at eros</li>
-					<li class="list-group-item"><button type="button" class="btn btn-primary btn-block">Sign Up</button></li>
-				</ul>
-			</div>
-		</div>
 		<div class="col-md-4">
 			<div class="panel panel-danger">
 				<!-- Default panel contents -->
 				<div class="panel-heading">Passengers Without Drivers</div>
-				<div class="panel-body">
-					<p>...</p>
-				</div>
-
 				<!-- List group -->
 				<ul class="list-group">
 					<li class="list-group-item">Cras justo odio</li>
@@ -162,7 +84,6 @@
 					<li class="list-group-item">Morbi leo risus</li>
 					<li class="list-group-item">Porta ac consectetur ac</li>
 					<li class="list-group-item">Vestibulum at eros</li>
-					<li class="list-group-item"><button type="button" class="btn btn-primary btn-block">Sign Up</button></li>
 				</ul>
 			</div>
 		</div>

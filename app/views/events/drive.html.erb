@@ -1,0 +1,23 @@
+<% @page_title = "Drive" %>
+
+<div>
+	<h1 class="page-header">Sign Up to Drive</h1>
+	
+	<form method="POST" action="/events/makeride/<%= params[:id] %>">
+		<%= token_tag %>
+		<div class="form-group">
+			<label>Number of Passengers</label>
+			<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Number of Passengers" name="ride[num_passengers]">
+			<p class="help-block">Enter number of people you can drive (does not include yourself).</p>
+		</div>
+		<div class="form-group">
+			<label>Notes</label>
+			<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Notes" name="ride[notes]">
+			<p class="help-block">Add any notes, such as pickup location or other specifics.</p>
+		</div>
+		<button type="submit" class="btn btn-default">Drive</button>
+	</form>
+	
+	
+	
+</div><!-- end hours -->
