@@ -2,7 +2,7 @@
 
 <div>
 	
-	<h1 class="page-header">Single Organization <%= @organization.name %> - <small><%= @organization.semester %> <%= @organization.year %></small></h1>
+	<h1 class="page-header"><%= @organization.name %> - <small><%= @organization.semester %> <%= @organization.year %></small></h1>
 	<p>Organization info</p>
 	<p>Name: <%= @organization.name %></p>
 	<p>show events</p>
@@ -11,7 +11,7 @@
 		<% @events.each do |event| %>
 			<a href="/events/view/<%= event.id %>" class="list-group-item">
 				<h4><%= event.name %></h4>
-				<p><%= event.date %></p>
+				<p><%= event.date.strftime("%A, %B %e") %></p>
 			</a>
 		<% end %>
 		

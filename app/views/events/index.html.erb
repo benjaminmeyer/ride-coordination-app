@@ -1,16 +1,16 @@
 <% @page_title = "Events" %>
 
 <div>
-	<h2>Events for "Person"</h2>
+	<h2><%= session[:first_name] %>'s Events</h2>
 	<br>
 	<div class="list-group">
 		<% @events.each do |event| %>
 			<a href="events/view/<%= event.id %>" class="list-group-item">
 				<h4><%= event.name %> - <small><%= Organization.find(event.organization_id).name %></small></h4>
-				<p><%= event.date %></p>
+				<p><%= event.date.strftime("%A, %B %e") %></p>
 			</a>
 		<% end %>
-		<a href="#" class="list-group-item">
+		<!--<a href="#" class="list-group-item">
 			<h4>Cras justo odio</h4>
 			<p>Text Text date</p>
 		</a>
@@ -29,7 +29,7 @@
 		<a href="#" class="list-group-item">
 			<h4>Cras justo odio</h4>
 			<p>Text Text date</p>
-		</a>
+		</a>-->
 	</div>
 	
 </div>
