@@ -1,3 +1,13 @@
+# Name: Ben Meyer
+# Course: CSC 415
+# Semester: Spring 2015
+# Instructor: Dr. Pulimood 
+# Project name: CooRIDEinate
+# Description: Allows for members of an organization to coordinate rides to a common place
+# Filename: dashboard_controller.rb 
+# Description: Shows organizations and events on dashboard
+# Last modified on: 2015-04-21
+
 class DashboardController < ApplicationController
 	
 	before_action :confirm_logged_in

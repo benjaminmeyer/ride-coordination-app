@@ -1,3 +1,13 @@
+# Name: Ben Meyer
+# Course: CSC 415
+# Semester: Spring 2015
+# Instructor: Dr. Pulimood 
+# Project name: CooRIDEinate
+# Description: Allows for members of an organization to coordinate rides to a common place
+# Filename: access_controller.rb 
+# Description: Allows user to login and signup
+# Last modified on: 2015-04-21
+
 class AccessController < ApplicationController
 	def index
 	end
