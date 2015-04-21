@@ -120,7 +120,8 @@ class EventsController < ApplicationController
 	def drive
 		
 		#check if user has access to event
-		@organization = Organization.find(params[:id])
+		@event = Event.find(params[:id])
+		@organization = @event.organization
 		@user = @organization.users.find_by_id(session[:user_id])
 		
 		#reidrect if no event specified - need to check if event is in database
@@ -210,6 +211,45 @@ class EventsController < ApplicationController
 		else
 			flash[:notice] = "Error occured."
 			redirect_to(:action => 'view', :id => params[:id])
+		end
+	end
+	
+	def autosignup
+		#check if user has access to event
+		@event = Event.find(params[:id])
+		@organization = @event.organization
+		user = @organization.users.find_by_id(session[:user_id])
+		
+		#redirect user if they don't have access
+		if !user
+			flash[:notice] = "Event not found"
+			redirect_to(:controller => 'access', :action =>'notfound')
+		end
+		
+		#check if there are existing rides for event
+		@rides = @event.rides
+		
+		if !@rides.present?
+			flash[:notice] = "No rides found. Please be a driver if you have a car."
+			redirect_to(:action => 'drive', :id => params[:id]) and return
+			
+		else
+			#find ride
+			ride = @event.rides.first
+		
+			#create passenger and assign to ride
+			passenger = Passenger.new
+			passenger.ride = ride
+			passenger.user = user
+			passenger.role = "passenger"
+
+			if passenger.save
+				flash[:notice] = "You have been signed up as a passenger."
+				redirect_to(:action => 'view', :id => params[:id])
+			else
+				flash[:notice] = "Error occured."
+				redirect_to(:action => 'view', :id => params[:id])
+			end
 		end
 	end
 end
