@@ -12,6 +12,12 @@ class DashboardController < ApplicationController
 	
 	before_action :confirm_logged_in
 	
+	#-----------------------------------------------------------------------------------------
+	#  def index
+	#    
+	#    Pre-condition: User must be logged in with valid user id
+	#    Post-condition: Organizations and Events for a user are returned from the database 
+	#-----------------------------------------------------------------------------------------
 	def index
 		
 		user = User.find(session[:user_id])

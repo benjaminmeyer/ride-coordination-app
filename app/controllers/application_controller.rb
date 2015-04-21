@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
 	
 	private
 	
+	#-----------------------------------------------------------------------------------------
+	#  def confirm_logged_in
+	#    
+	#    Pre-condition: Cookie present with valid user id
+	#    Post-condition: Controller flow continues
+	#-----------------------------------------------------------------------------------------
 	def confirm_logged_in
 		unless session[:user_id]
 			flash[:notice] = "Please Log In"

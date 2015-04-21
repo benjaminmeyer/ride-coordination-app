@@ -14,12 +14,24 @@ class OrganizationsController < ApplicationController
 	
 	before_action :confirm_logged_in
 	
+	#-----------------------------------------------------------------------------------------
+	#  def index
+	#    
+	#    Pre-condition: Valid logged in user id must be present
+	#    Post-condition: Organizations for user are pulled from database 
+	#-----------------------------------------------------------------------------------------
 	def index
 		user = User.find(session[:user_id])
 		#@organizations = Organization.all.active
 		@organizations = user.organizations
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def view
+	#    
+	#    Pre-condition: Valid organization id must be present
+	#    Post-condition: Single organization is pulled from database 
+	#-----------------------------------------------------------------------------------------
 	def view
 		@organization = Organization.find(params[:id])
 		#@events = Event.where(:organization_id => @organization.id)
@@ -35,10 +47,21 @@ class OrganizationsController < ApplicationController
 		end
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def new
+	#    
+	#    Blank action. New organization form is displayed to user
+	#-----------------------------------------------------------------------------------------
 	def new
-		
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def create
+	#    
+	#    Pre-condition: Valid logged in user id must be present
+	#    Post-condition: Organization is created and saved in database. User is directed to
+	#					organization page.
+	#-----------------------------------------------------------------------------------------
 	def create
 		user = User.find(session[:user_id])
 		
@@ -67,10 +90,24 @@ class OrganizationsController < ApplicationController
 		end
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def join
+	#    
+	#    Pre-condition: none
+	#    Post-condition: A list of organizations is pulled from the database 
+	#-----------------------------------------------------------------------------------------
 	def join
 		@organizations = Organization.all
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def dojoin
+	#    
+	#    Pre-condition: Valid logged-in user id must be present.
+	#					Valid organization id must be present
+	#    Post-condition: User is added to organization in database. 
+	#					Directed to organization page
+	#-----------------------------------------------------------------------------------------
 	def dojoin
 		member = Member.new
 		

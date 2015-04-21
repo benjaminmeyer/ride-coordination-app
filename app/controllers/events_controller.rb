@@ -12,12 +12,25 @@ class EventsController < ApplicationController
 	
 	before_action :confirm_logged_in
 	
+	#-----------------------------------------------------------------------------------------
+	#  def index
+	#    
+	#    Pre-condition: User must be logged in with valid user id
+	#    Post-condition: List of events for User is displayed
+	#-----------------------------------------------------------------------------------------
 	def index
 		user = User.find(session[:user_id])
 		organizations = user.organizations
 		@events = organizations.flat_map(&:events)
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def view
+	#    
+	#    Pre-condition: User must be logged in with valid user id. 
+	#					Valid event id must be present
+	#    Post-condition: Event is returned from database 
+	#-----------------------------------------------------------------------------------------
 	def view
 		@event = Event.find(params[:id])
 		
@@ -36,6 +49,12 @@ class EventsController < ApplicationController
 		end
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def new
+	#    
+	#    Pre-condition: Organization id must be present
+	#    Post-condition: User is redirected to events page if id is not present
+	#-----------------------------------------------------------------------------------------
 	def new
 		#redirect if no organization specified - need to check if org is in database
 		if !params[:id]
@@ -43,6 +62,14 @@ class EventsController < ApplicationController
 		end
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def create
+	#    
+	#    Pre-condition: Create event form must be populated with vaild data.
+	#					Valid organization id must be present
+	#    Post-condition: Event is created and put in database. User is directed to
+	#					newly created event page
+	#-----------------------------------------------------------------------------------------
 	def create
 		#check if user has access to organization
 		@organization = Organization.find(params[:id])
@@ -127,6 +154,12 @@ class EventsController < ApplicationController
 		end
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def drive
+	#    
+	#    Pre-condition: Valid event id must be present
+	#    Post-condition: User is redirected to events page if id is not present or valid 
+	#-----------------------------------------------------------------------------------------
 	def drive
 		
 		#check if user has access to event
@@ -140,6 +173,14 @@ class EventsController < ApplicationController
 		end
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def makeride
+	#    
+	#    Pre-condition: Ride form must be populated with vaild data.
+	#					Valid event id must be present
+	#    Post-condition: Ride is created and put in database. A driver for the ride is created
+	#					and put in database. User is redirected to event page upon creation.
+	#-----------------------------------------------------------------------------------------
 	def makeride
 		#check if user has access to event
 		@event = Event.find(params[:id])
@@ -188,6 +229,12 @@ class EventsController < ApplicationController
 		
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def signup
+	#    
+	#    Pre-condition: Valid event id must be present. Valid ride id must be passed
+	#    Post-condition: User is signed up for a ride and database is updated
+	#-----------------------------------------------------------------------------------------
 	def signup
 		#check if user has access to event
 		@event = Event.find(params[:id])
@@ -224,6 +271,13 @@ class EventsController < ApplicationController
 		end
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def autosignup
+	#    
+	#    Pre-condition: Valid event id must be present
+	#    Post-condition: User is signed up as a passenger in the database
+	#					or is prompted to drive
+	#-----------------------------------------------------------------------------------------
 	def autosignup
 		#check if user has access to event
 		@event = Event.find(params[:id])

@@ -12,10 +12,22 @@ class ProfileController < ApplicationController
 	
 	before_action :confirm_logged_in
 	
+	#-----------------------------------------------------------------------------------------
+	#  def index
+	#    
+	#    Pre-condition: Valid logged-in user id must be present
+	#    Post-condition: Current user is returned from database 
+	#-----------------------------------------------------------------------------------------
 	def index
 		@user = User.find(session[:user_id])
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def updatecar
+	#    
+	#    Pre-condition: Number of passengers form must be populated with vaild data
+	#    Post-condition: Number of passengers is updated for user in database 
+	#-----------------------------------------------------------------------------------------
 	def updatecar
 		user = User.find(session[:user_id])
 		

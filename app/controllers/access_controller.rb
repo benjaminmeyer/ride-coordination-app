@@ -9,12 +9,30 @@
 # Last modified on: 2015-04-21
 
 class AccessController < ApplicationController
+	
+	#-----------------------------------------------------------------------------------------
+	#  def index
+	#    
+	#    Default action. Redirects to action#login in routes.rb
+	#-----------------------------------------------------------------------------------------
 	def index
 	end
-
+	
+	#-----------------------------------------------------------------------------------------
+	#  def login
+	#    
+	#    Blank action for login view. Displays login form 
+	#-----------------------------------------------------------------------------------------
 	def login
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def attempt_login
+	#    
+	#    Pre-condition: login form must be populated with vaild data
+	#    Post-condition: User is logged in and a cookie is set. 
+	#					Otherwise an error is displayed
+	#-----------------------------------------------------------------------------------------
 	def attempt_login
 		if params[:email].present? && params[:password].present?
 			found_user = User.where(:email => params[:email]).first
@@ -35,6 +53,13 @@ class AccessController < ApplicationController
 			
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def logout
+	#    
+	#    Pre-condition: none
+	#    Post-condition: User is logged out and cokkie is destroyed.
+	#					Redirected to login page
+	#-----------------------------------------------------------------------------------------
 	def logout
 		session[:user_id] = nil
 		session[:first_name] = nil
@@ -42,14 +67,29 @@ class AccessController < ApplicationController
 		redirect_to(:action => 'login')
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def notfound
+	#    
+	#    Black action for "not found" page. Displays error to user stating they
+	#		do not have access to event or organization
+	#-----------------------------------------------------------------------------------------
 	def notfound
-		
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def create
+	#    
+	#    Blank action for "create" page. Displays form to create a new account
+	#-----------------------------------------------------------------------------------------
 	def create
-		
 	end
 	
+	#-----------------------------------------------------------------------------------------
+	#  def createuser
+	#    
+	#    Pre-condition: create user form must be populated with vaild data
+	#    Post-condition: User is created in database, logged in and a cookie is set 
+	#-----------------------------------------------------------------------------------------
 	def createuser
 		user = User.new
 		
