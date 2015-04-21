@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'profile/index'
+
 	root "dashboard#index"
 	
 	get "login", :to => "access#login"

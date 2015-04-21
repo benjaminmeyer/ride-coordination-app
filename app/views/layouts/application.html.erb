@@ -14,9 +14,9 @@
           <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 
           <!-- Custom -->
-          <link href="http://localhost:3000/css/customstyles.css" rel="stylesheet">
-          <link href="http://localhost:3000/css/features.css" rel="stylesheet">
-          <link href="http://localhost:3000/css/dashboard.css" rel="stylesheet">
+          <link href="/css/customstyles.css" rel="stylesheet">
+          <link href="/css/features.css" rel="stylesheet">
+          <link href="/css/dashboard.css" rel="stylesheet">
 		 <!--<link href="http://localhost:3000/css/paper.bootstrap.min.css" rel="stylesheet">-->
 
      </head>
@@ -53,7 +53,7 @@
 								<li class="dropdown">
 									 <a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Welcome, <%= session[:first_name]  || "Please Log in" %> <strong class="caret"></strong></a>
 									<ul class="dropdown-menu" role="menu">
-										  <li><a href="#">Profile</a></li>
+										  <li><a href="/profile">Profile</a></li>
 										  <li class="divider"></li>
 										<li><a href="/access/logout"><div class="text-danger">Logout</div></a></li>
 									 </ul>
@@ -79,7 +79,7 @@
                         
 						<% if !flash[:notice].blank? %>
 							<div class="alert alert-info" role="alert"><%= flash[:notice] %></div>
-						<% end %>
+						<% end %>	
 						
 						<%= yield %>
 

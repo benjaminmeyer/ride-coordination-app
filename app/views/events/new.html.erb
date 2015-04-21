@@ -1,0 +1,117 @@
+<% @page_title = "Create Event" %>
+
+<div>
+	<h1 class="page-header">Create New Event</h1>
+	
+	<script type="text/javascript" src="../../js/bootstrap-datepicker.js"></script>
+	<link href="../../css/datepicker3.css" rel="stylesheet">
+	<script>
+		$(document).ready(function() {
+			$('#bscal').datepicker({
+				format: "yyyy-mm-dd",
+				todayBtn: "linked",
+				orientation: "top auto"
+				//todayHighlight: true
+			}).on('changeDate', function(e){
+				var y = e.date.getFullYear(),
+				_m = e.date.getMonth() + 1,
+				m = (_m > 9 ? _m : '0'+_m),
+				_d = e.date.getDate(),
+				d = (_d > 9 ? _d : '0'+_d);
+				var rawDate = y + '-' + m + '-' + d;
+				$('#selected_date').val(rawDate);
+			});
+		});
+	</script>
+	
+	<form method="POST" action="/events/create/<%= params[:id] %>">
+		<%= token_tag %>
+		<div class="form-group">
+			<label>Name</label>
+			<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Name" name="name" value="<%= params[:name] %>">
+		</div>
+		<div class="form-group">
+			<label>Address</label>
+			<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Address" name="address" value="<%= params[:address] %>">
+		</div>
+		<div class="form-group">
+			<label>Date</label>
+			<div id="bscal">
+				<!-- calendar goes here -->
+			</div>	
+			<input type="hidden" class="form-control" id="selected_date" placeholder="Date (yyyy-mm-dd)" name="date" value="<%= params[:date] %>">
+		</div>
+		
+		<div class="form-group form-inline">
+			<label for="eventstarttime" class="col-sm-2 control-label">Start Time</label>
+			<div class="col-sm-10">
+				<select class="form-control" name="start_hour" style="width: auto" value="<%= params[:start_hour] %>">
+					<option value="">Hour</option>
+					<option value="01">1</option>
+					<option value="02">2</option>
+					<option value="03">3</option>
+					<option value="04">4</option>
+					<option value="05">5</option>
+					<option value="06">6</option>
+					<option value="07">7</option>
+					<option value="08">8</option>
+					<option value="09">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="00">12</option>
+				</select>
+				<select class="form-control" name="start_min" id="timestartmin" style="width: auto" value="<%= params[:start_min] %>">
+					<option value="">Minute</option>
+					<option value="00">:00</option>
+					<option value="15">:15</option>
+					<option value="30">:30</option>
+					<option value="45">:45</option>
+				</select>
+				<select class="form-control" name="start_ampm" id="timestartampm" style="width: auto" value="<%= params[:start_ampm] %>">
+					<option value="">AM / PM</option>
+					<option value="am">AM</option>
+					<option value="pm">PM</option>
+				</select>
+			</div>
+		</div>
+		
+		<br>
+		<br>
+		
+		<div class="form-group form-inline">
+			<label for="eventendtime" class="col-sm-2 control-label">End Time</label>
+			<div class="col-sm-10">
+				<select class="form-control" name="end_hour" style="width: auto" value="<%= params[:end_hour] %>">
+					<option value="">Hour</option>
+					<option value="01">1</option>
+					<option value="02">2</option>
+					<option value="03">3</option>
+					<option value="04">4</option>
+					<option value="05">5</option>
+					<option value="06">6</option>
+					<option value="07">7</option>
+					<option value="08">8</option>
+					<option value="09">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="00">12</option>
+				</select>
+				<select class="form-control" name="end_min" style="width: auto" value="<%= params[:end_min] %>">
+					<option value="">Minute</option>
+					<option value="00">:00</option>
+					<option value="15">:15</option>
+					<option value="30">:30</option>
+					<option value="45">:45</option>
+				</select>
+				<select class="form-control" name="end_ampm" style="width: auto" value="<%= params[:end_ampm] %>">
+					<option value="">AM / PM</option>
+					<option value="am">AM</option>
+					<option value="pm">PM</option>
+				</select>
+			</div>
+		</div>
+		
+		<button type="submit" class="btn btn-default">Create Event</button>
+	</form>
+	
+</div><!-- end hours -->
