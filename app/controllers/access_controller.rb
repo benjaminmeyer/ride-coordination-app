@@ -95,6 +95,7 @@ class AccessController < ApplicationController
 		
 		founduser = User.find_by_email(params[:email])
 		
+		# check if first name is filled out
 		if !params[:first_name].present?
 			flash[:notice] = "Must enter a first name."
 			redirect_to(:action => 'create', :last => params[:last_name], :mail => params[:email]) and return
@@ -102,6 +103,7 @@ class AccessController < ApplicationController
 			user.first_name = params[:first_name]
 		end
 		
+		# check if last name is filled out
 		if !params[:last_name].present?
 			flash[:notice] = "Must enter a last name."
 			redirect_to(:action => 'create', :first => params[:first_name], :mail => params[:email]) and return
@@ -109,11 +111,13 @@ class AccessController < ApplicationController
 			user.last_name = params[:last_name]
 		end
 		
+		# check if email is filled out
 		if !params[:email].present?
 			flash[:notice] = "Must enter an email."
 			redirect_to(:action => 'create', :first => params[:first_name], :last => params[:last_name]) and return
 		end
 		
+		#check if email has already been used
 		if founduser
 			flash[:notice] = "That email has already been used."
 			redirect_to(:controller => 'login') and return
@@ -121,6 +125,7 @@ class AccessController < ApplicationController
 			user.email = params[:email]
 		end
 		
+		#check if passwords match
 		if !params[:password].present? || !params[:verifypassword].present?
 			flash[:notice] = "Must enter password."
 			redirect_to(:action => 'create', :first => params[:first_name], :last => params[:last_name], :mail => params[:email]) and return
@@ -133,6 +138,7 @@ class AccessController < ApplicationController
 			end
 		end
 		
+		#save user
 		if user.save
 			session[:user_id] = user.id
 			session[:first_name] = user.first_name

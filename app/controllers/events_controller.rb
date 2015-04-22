@@ -32,10 +32,9 @@ class EventsController < ApplicationController
 	#    Post-condition: Event is returned from database 
 	#-----------------------------------------------------------------------------------------
 	def view
+		
 		@event = Event.find(params[:id])
-		
 		@rides = @event.rides.joins(:users).uniq
-		
 		#@users = @rides.flat_map(&:users)
 		
 		#check if user has access to event
@@ -131,7 +130,6 @@ class EventsController < ApplicationController
 		else
 			starthour = params[:start_hour]
 		end
-			
 		newevent.start_time = starthour.to_s + ":" + params[:start_min].to_s + ":00" 
 		
 		#end time format
@@ -142,8 +140,7 @@ class EventsController < ApplicationController
 			end
 		else
 			endhour = params[:end_hour]
-		end
-			
+		end	
 		newevent.end_time = endhour.to_s + ":" + params[:end_min].to_s + ":00"
 		
 		#save event
