@@ -274,6 +274,10 @@ class EventsController < ApplicationController
 	#    Pre-condition: Valid event id must be present
 	#    Post-condition: User is signed up as a passenger in the database
 	#					or is prompted to drive
+	#	Algorithm currently only checks if there is a ride present to sign up under 
+	#	and does not take int oaccount the number of rides or how many people are signed up.
+	#	This needs to be expanded in the future. Is currently not implemted due to lack to
+	#	varying user data.
 	#-----------------------------------------------------------------------------------------
 	def autosignup
 		#check if user has access to event
