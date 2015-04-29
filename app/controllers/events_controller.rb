@@ -300,11 +300,35 @@ class EventsController < ApplicationController
 			
 		else
 			#find ride
-			ride = @event.rides.first
+			rides = @event.rides
+			#set high ride count so it can be compared to lower numbers
+			currentpasscount = 100
+			
+			#go through each ride
+			rides.each do |thisride|
+				passcount = 0
+				#count number of passengers
+				thisride.users.each do |thisuser|
+					passcount = passcount + 1
+				end
+				#select ride if it has a smaller number of passengers
+				if passcount < currentpasscount
+					@newride = thisride
+					currentpasscount = passcount
+					#check if ride limit is reached. currently bugged and does not function correctly
+					#if thisride.num_passengers >= passcount
+						#@newride = thisride
+						#currentpasscount = passcount
+					#else
+						#flash[:notice] = "No available rides. Please sign up as a driver if you have a car."
+						#redirect_to(:action => 'view', :id => params[:id]) and return
+					#end
+				end
+			end
 		
 			#create passenger and assign to ride
 			passenger = Passenger.new
-			passenger.ride = ride
+			passenger.ride = @newride
 			passenger.user = user
 			passenger.role = "passenger"
 
