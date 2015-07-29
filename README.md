@@ -5,8 +5,6 @@ Make sure that everyone within an organiztion has a ride for off campus events.
 https://github.com/benjaminmeyer/ride-coordination-app
 
 #Installing and using application
-The full installation can be viewed at 172.16.100.55 on TCNJ's network.
-
 The project requires Ruby on Rails, MySQL, and Apache with Passenger to be installed
 and configured. The server is currently running Ubuntu. The program expects a database
 named "mass_carpool_db" with a user named "db_user" and a password of "password". To install
